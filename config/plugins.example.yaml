@@ -1,0 +1,24 @@
+schema_version: 1
+plugins:
+  dh-core:
+    enabled: true
+    config: {}
+  dh-http-status:
+    enabled: true
+    config:
+      endpoints:
+        automation:
+          base_url: https://automation.example.invalid
+          health_path: /health
+          verify_tls: true
+          stale_after_seconds: 30
+        metrics:
+          base_url: https://metrics.example.invalid
+          health_path: /-/ready
+          verify_tls: true
+          stale_after_seconds: 30
+        network:
+          base_url: https://network.example.invalid
+          health_path: /health
+          verify_tls: true
+          stale_after_seconds: 30

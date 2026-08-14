@@ -1,0 +1,35 @@
+[project]
+name = "dh-pack-homelab"
+version = "0.1.0"
+description = "Topology-neutral homelab observability solution pack for Deckhand"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+  "jsonschema>=4.25,<5",
+  "pyyaml>=6.0,<7",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.4,<9",
+  "ruff>=0.12,<1",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q --strict-markers"
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "S", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]

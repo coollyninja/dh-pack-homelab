@@ -1,0 +1,16 @@
+schema_version: 1
+id: homelab-observability
+title: Homelab Observability
+controls:
+  - position: 0
+    type: status
+    domain: automation
+    label: Automation
+  - position: 1
+    type: status
+    domain: metrics
+    label: Metrics
+  - position: 2
+    type: status
+    domain: network
+    label: Network
