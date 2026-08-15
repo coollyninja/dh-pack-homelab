@@ -18,3 +18,15 @@ controls:
     type: status
     domain: virtualization_cluster
     label: Virtualization
+  - position: 4
+    type: status
+    domain: monitoring_availability
+    label: Monitoring
+  - position: 5
+    type: status
+    domain: critical_alerts
+    label: Alerts
+  - position: 6
+    type: status
+    domain: scrape_targets
+    label: Scrapes

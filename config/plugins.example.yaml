@@ -35,3 +35,33 @@ plugins:
         virtualization_cluster:
           kind: cluster
           stale_after_seconds: 30
+  dh-prometheus:
+    enabled: true
+    runtime:
+      timeout_seconds: 8
+      max_concurrency: 4
+      requests_per_second: 10
+      burst: 10
+      failure_threshold: 3
+      recovery_seconds: 30
+    config:
+      endpoint: https://prometheus.example.invalid
+      bearer_token_file: /run/secrets/deckhand/prometheus-token
+      verify_tls: true
+      ca_file: /run/secrets/deckhand/prometheus-ca.pem
+      timeout_seconds: 5
+      checks:
+        monitoring_availability:
+          kind: scalar
+          expression: scalar(sum(up) > 0)
+          operator: eq
+          threshold: 1
+          stale_after_seconds: 30
+        critical_alerts:
+          kind: alerts
+          match_labels:
+            severity: critical
+          stale_after_seconds: 30
+        scrape_targets:
+          kind: targets
+          stale_after_seconds: 30
