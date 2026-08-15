@@ -11,7 +11,19 @@ def test_pack_is_internally_consistent() -> None:
 
 def test_pack_composes_only_read_only_plugins() -> None:
     config = yaml.safe_load(Path("config/plugins.example.yaml").read_text(encoding="utf-8"))
-    assert set(config["plugins"]) == {"dh-core", "dh-http-status", "dh-proxmox"}
+    assert set(config["plugins"]) == {
+        "dh-core",
+        "dh-http-status",
+        "dh-proxmox",
+        "dh-prometheus",
+    }
     assert config["plugins"]["dh-proxmox"]["config"]["targets"] == {
         "virtualization_cluster": {"kind": "cluster", "stale_after_seconds": 30}
     }
+    prometheus = config["plugins"]["dh-prometheus"]
+    assert set(prometheus["config"]["checks"]) == {
+        "monitoring_availability",
+        "critical_alerts",
+        "scrape_targets",
+    }
+    assert prometheus["runtime"]["max_concurrency"] == 4
