@@ -22,3 +22,16 @@ plugins:
           health_path: /health
           verify_tls: true
           stale_after_seconds: 30
+  dh-proxmox:
+    enabled: true
+    config:
+      endpoint: https://proxmox.example.invalid:8006
+      token_id_file: /run/secrets/deckhand/proxmox-token-id
+      token_secret_file: /run/secrets/deckhand/proxmox-token-secret
+      verify_tls: true
+      ca_file: /run/secrets/deckhand/proxmox-ca.pem
+      timeout_seconds: 5
+      targets:
+        virtualization_cluster:
+          kind: cluster
+          stale_after_seconds: 30

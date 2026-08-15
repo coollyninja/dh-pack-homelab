@@ -14,3 +14,7 @@ controls:
     type: status
     domain: network
     label: Network
+  - position: 3
+    type: status
+    domain: virtualization_cluster
+    label: Virtualization
