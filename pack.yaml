@@ -1,10 +1,12 @@
 schema_version: 1
 id: dh-pack-homelab
 name: Homelab Observability
-version: 0.1.0
-description: Topology-neutral HTTP health composition for a small operator-managed environment.
+version: 0.2.0
+description: Topology-neutral service and virtualization observability for a small environment.
 requires:
   - plugin: dh-http-status
+    version: 0.1.0
+  - plugin: dh-proxmox
     version: 0.1.0
 profiles:
   - id: homelab-observability

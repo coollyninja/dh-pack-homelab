@@ -1,8 +1,11 @@
 schema_version: 1
 plugins:
   - id: dh-core
-    version: 0.2.0
+    version: 0.3.0
     source: builtin
   - id: dh-http-status
+    version: 0.1.0
+    source: python
+  - id: dh-proxmox
     version: 0.1.0
     source: python
