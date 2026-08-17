@@ -1,0 +1,5 @@
+deckhand-control-plane @ git+https://github.com/coollyninja/deckhand.git@126939dbdab925696cb4aa9e125332fcb45b32aa
+dh-http-status @ git+https://github.com/coollyninja/dh-http-status.git@2492000688e7d05e7856fd360e5d289afa06ad56
+dh-proxmox @ git+https://github.com/coollyninja/dh-proxmox.git@b2e1847985d3dbe50f193763d886faed862720b5
+dh-prometheus @ git+https://github.com/coollyninja/dh-prometheus.git@51ded19d03f13b75c997690cd3617b02a6319fea
+dh-tailscale @ git+https://github.com/coollyninja/dh-tailscale.git@77009ef803e095e23f9bbe6c993ae6c5b49bd570

@@ -65,3 +65,33 @@ plugins:
         scrape_targets:
           kind: targets
           stale_after_seconds: 30
+  dh-tailscale:
+    enabled: true
+    runtime:
+      timeout_seconds: 8
+      max_concurrency: 2
+      requests_per_second: 2
+      burst: 2
+      failure_threshold: 3
+      recovery_seconds: 30
+    config:
+      oauth_client_id_file: /run/secrets/deckhand/tailscale-oauth-client-id
+      oauth_client_secret_file: /run/secrets/deckhand/tailscale-oauth-client-secret
+      timeout_seconds: 5
+      checks:
+        tailnet_fleet:
+          kind: fleet
+          maximum_offline: 5
+          maximum_unauthorized: 0
+          maximum_expired: 0
+          stale_after_seconds: 60
+        stale_devices:
+          kind: stale
+          maximum_age_seconds: 604800
+          maximum_stale: 2
+          stale_after_seconds: 60
+        key_expiry:
+          kind: key_expiry
+          window_days: 14
+          maximum_expiring: 1
+          stale_after_seconds: 60

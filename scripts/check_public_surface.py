@@ -16,7 +16,10 @@ SKIP_SUFFIXES = {".png", ".jpg", ".jpeg", ".gif", ".ico", ".woff", ".woff2"}
 
 def tracked_files() -> list[Path]:
     result = subprocess.run(
-        ["/usr/bin/git", "ls-files", "-z"], cwd=ROOT, check=True, capture_output=True
+        ["/usr/bin/git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
     )
     return [ROOT / item.decode() for item in result.stdout.split(b"\0") if item]
 

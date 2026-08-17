@@ -25,3 +25,36 @@ jobs:
       - run: uv run python scripts/validate_pack.py
       - run: uv run python scripts/check_public_surface.py
       - run: uv run pytest
+
+  installed-and-disabled:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: uv venv .ecosystem-venv
+      - run: uv pip install --python .ecosystem-venv/bin/python -r tests/ecosystem-requirements.txt
+      - run: .ecosystem-venv/bin/python scripts/test_ecosystem.py installed-and-disabled
+
+  independently-removed:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        plugin: [dh-http-status, dh-proxmox, dh-prometheus, dh-tailscale]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: uv venv .ecosystem-venv
+      - run: uv pip install --python .ecosystem-venv/bin/python -r tests/ecosystem-requirements.txt
+      - run: uv pip uninstall --python .ecosystem-venv/bin/python ${{ matrix.plugin }}
+      - run: .ecosystem-venv/bin/python scripts/test_ecosystem.py removed ${{ matrix.plugin }}
