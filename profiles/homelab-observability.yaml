@@ -30,3 +30,15 @@ controls:
     type: status
     domain: scrape_targets
     label: Scrapes
+  - position: 7
+    type: status
+    domain: tailnet_fleet
+    label: Tailnet
+  - position: 8
+    type: status
+    domain: stale_devices
+    label: Stale Devices
+  - position: 9
+    type: status
+    domain: key_expiry
+    label: Key Expiry
